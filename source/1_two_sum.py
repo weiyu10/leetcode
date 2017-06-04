@@ -5,12 +5,28 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        for first_num_index in xrange(len(nums)):
-            for second_num_index in xrange(len(nums)):
-                if nums[first_num_index] + nums[second_num_index] == target:
-                    if first_num_index == second_num_index:
+        x = 0
+        for first_num in nums:
+            y = 0
+            for second_num in nums:
+                if first_num + second_num == target:
+                    if x == y:
                         pass
                     else:
-                        return [first_num_index, second_num_index]
+                        return [x, y]
                 else:
                     pass
+                y = y + 1
+            x = x + 1
+
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        if len(nums) <= 1:
+            return False
+        buff_dict = {}
+        for i in range(len(nums)):
+            if nums[i] in buff_dict:
+                return [buff_dict[nums[i]], i]
+            else:
+                buff_dict[target - nums[i]] = i
